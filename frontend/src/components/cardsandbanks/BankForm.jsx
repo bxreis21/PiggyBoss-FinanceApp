@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import FormField from "../../components/FormField";
-import DarkBox from "../DarkBox";
+import PiggyBox from "../PiggyBox";
 import PinkButton from "../PinkButton";
 import API from "../../utils/api";
 import Image from "../Image";
-import logo from "../../assets/nerd.png";
+import logo from "../../assets/images/nerd.png";
 import { useAuth } from "../../context/AuthContext"
 import { fetchInstitution } from "../../services/financeServices";
 
@@ -63,7 +63,7 @@ export default function BankForm( styles ){
     };
 
     const BANK_FORM = (
-            <DarkBox 
+            <PiggyBox 
                 style = {{ 
                     height : "55%", 
                     width : "40%",
@@ -144,7 +144,7 @@ export default function BankForm( styles ){
                     </div>
                     <PinkButton text = "Add a Bank" style = {{ width: "40%", margin: "5%"}}/>
                 </form>
-            </DarkBox>
+            </PiggyBox>
     )
 
     return BANK_FORM

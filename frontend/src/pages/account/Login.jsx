@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Account.module.css"
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import Image from "../../components/Image";
 import FormField from "../../components/FormField";
 import PinkButton from "../../components/PinkButton";
-import DarkBox from "../../components/DarkBox";
+import PiggyBox from "../../components/PiggyBox";
 import Message from "../../components/Message"; 
 import { useAuth } from '../../context/AuthContext';
 
@@ -56,7 +56,7 @@ export default function Login() {
   };
   const LOGIN_PAGE = (
     <div className={styles['account-page']}>
-        <DarkBox style = {{ width : "20%", height : "55%", maxHeight: "600px" , minWidth : "280px", minHeight : "500px", background : "#2C2C3D"}}>
+        <PiggyBox style = {{ width : "20%", height : "55%", maxHeight: "600px" , minWidth : "280px", minHeight : "500px", background : "#2C2C3D"}}>
 
           <div style={{ height: '25%', margin: '5% 0 0 0' }}> 
             <Image scr={logo} />
@@ -111,7 +111,7 @@ export default function Login() {
           </div>
 
           <Message message={error} type="error" style={{ height: '5%' }} />
-        </DarkBox>
+        </PiggyBox>
     </div>
   );
 

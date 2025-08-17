@@ -1,6 +1,6 @@
 import styles from "./CardsAndBanks.module.css"
 import SelectBox from "../../components/cardsandbanks/SelectBox";
-import DarkBox from "../../components/DarkBox";
+import PiggyBox from "../../components/PiggyBox";
 import BankForm from "../../components/cardsandbanks/BankForm";
 import CardForm from "../../components/cardsandbanks/CardForm";
 import CategoriesForm from "../../components/cardsandbanks/CategoriesForm";
@@ -84,9 +84,9 @@ export default function CardsAndBanks(){
                 {visibleForm === 'card' && <CardForm />}
                 {visibleForm === 'cat' && <CategoriesForm />}
                 {visibleForm === null && 
-                <DarkBox style ={{ width : "90%", minwidth : "300px", height : "90%", minheight : "100px" }} >
+                <PiggyBox style ={{ width : "90%", minwidth : "300px", height : "90%", minheight : "100px" }} >
                         <TransactionsView bank={bankSelected} card={cardSelected} category={categorySelected}/>
-                </DarkBox>
+                </PiggyBox>
                 }
 
             </div>

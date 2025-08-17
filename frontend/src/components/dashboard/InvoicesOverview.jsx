@@ -1,6 +1,6 @@
 import * as dashboardServices from "../../services/dashboardServices"
 import { useEffect, useState } from "react"
-import DarkBox from "../DarkBox"
+import PiggyBox from "../PiggyBox"
 import styles from './Dashboard.module.css'
 
 export default function InvoicesOverview() {
@@ -27,7 +27,7 @@ export default function InvoicesOverview() {
     }
 
     const INVOICES_OVERVIEW = (
-        <DarkBox style = {{ width : "45%", height : "90%", minwidth : "300px", background : "#0f0b1f"}} >
+        <PiggyBox style = {{ width : "45%", height : "90%", minwidth : "300px", background : "#0f0b1f"}} >
                 
             <div className={styles["dashboard-head"]}>
                 <h4>Invoices</h4>
@@ -36,10 +36,10 @@ export default function InvoicesOverview() {
             <div className={styles["dashboard-content-invoices"]} style = {{ }}>
                 {
                     bills.map((element, index) => (
-                        <DarkBox key = {index} to="/login" style = {{  width:"90%", height : "25%", background : "#16102f", flexDirection:"row", justifyContent : 'space-between', alignItems : 'center', padding : '5%' }}>
+                        <PiggyBox key = {index} to="/login" style = {{  width:"90%", height : "25%", background : "#16102f", flexDirection:"row", justifyContent : 'space-between', alignItems : 'center', padding : '5%' }}>
                             <p>{element.card__name}</p>
                             <p>R$ {element.total}</p>
-                        </DarkBox>
+                        </PiggyBox>
                     ))
                 }
                                 
@@ -50,7 +50,7 @@ export default function InvoicesOverview() {
                 <p>{billsTotal}</p>
             </div>
 
-        </DarkBox>
+        </PiggyBox>
     )
 
     return INVOICES_OVERVIEW

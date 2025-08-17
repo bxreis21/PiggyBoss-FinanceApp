@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styles from "./Account.module.css";
-import DarkBox from "../../components/DarkBox";
+import PiggyBox from "../../components/PiggyBox";
 import FormField from "../../components/FormField";
 import PinkButton from "../../components/PinkButton";
 import { Link } from "react-router-dom";
 import API from "../../utils/api";
 import modalStyles from "./ForgotPassword.module.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 
 export default function ForgotPassword() {
   const [formData, setFormData] = useState({ emailOrPhone: "" });
@@ -49,7 +49,7 @@ export default function ForgotPassword() {
         </div>
       )}
       <div className={styles['account-page']}>
-        <DarkBox style = {{width:"30%", height:"60%", minwidth:"280px", minheight:"500px" }}>
+        <PiggyBox style = {{width:"30%", height:"60%", minwidth:"280px", minheight:"500px" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "5% 0 0 0" }}>
             <div style={{ fontSize: 40, marginBottom: 16 }}>🔒</div>
           </div>
@@ -87,7 +87,7 @@ export default function ForgotPassword() {
               </Link>
             </div>
           </form>
-        </DarkBox>
+        </PiggyBox>
       </div>
     </>
   );

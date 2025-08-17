@@ -3,7 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import './styles/App.css';
 import Login from './pages/account/Login.jsx';
 import Register from './pages/account/Register.jsx';
-import NavBar from './components/NavBar.jsx';
+import NavBar from './components/app/NavBar.jsx';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import CardsAndBanks from './pages/finance/CardsAndBanks.jsx';
 import ForgotPassword from "./pages/account/ForgotPassword";

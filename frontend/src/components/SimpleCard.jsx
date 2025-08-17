@@ -3,27 +3,24 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-export default function SimpleCard({ title, value, width, height, }) {
+export default function SimpleCard({ title, value, card_style, card_content_style  }) {
   return (
     <Card sx={{ 
       minWidth: 200, 
       borderRadius: 2, 
       boxShadow: 3, 
       bgcolor : "#16102f", 
-      height : height, 
-      width : width,
+      ...card_style
     }}>
       <CardContent  align="center" sx={{
         height : "100%",
         display : "flex",
         flexDirection : "column",
-        justifyContent : "center",
-        padding : "0 0 0 5%",
-        '&:last-child': {
-          paddingBottom: 0,
-        }
+        justifyContent : "flexStart",
+        padding : "3% 0 0 5%",
+        ...card_content_style
       }}>
-        <Typography variant="h6" component="div" gutterBottom sx={{ color: "#f5f5f5" }} align='left'>
+        <Typography variant="h8" component="div" gutterBottom sx={{ color: "#f5f5f5", paddingBottom: "2%" }} align='left'>
           {title}
         </Typography>
         <Typography variant="h4" component="div" sx={{ color: "#f5f5f5" }} align='left'>

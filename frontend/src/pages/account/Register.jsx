@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Account.module.css";
 import API from "../../utils/api";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import FormField from "../../components/FormField"; 
 import PinkButton from "../../components/PinkButton";
-import DarkBox from "../../components/DarkBox";
+import PiggyBox from "../../components/PiggyBox";
 import Message from "../../components/Message";
 
 export default function Register() {
@@ -77,7 +77,7 @@ export default function Register() {
 
   const REGISTER_PAGE = (
     <div className={styles['account-page']}>
-        <DarkBox style = {{width:"20%", height:"80%",  minWidth:"280px", minHeight:"700px", maxHeight:"700px", background:"#2C2C3D"}}>
+        <PiggyBox style = {{width:"20%", height:"80%",  minWidth:"280px", minHeight:"700px", maxHeight:"700px", background:"#2C2C3D"}}>
 
           <div style={{ height: '15%', margin: '5% 0 0 0' }}>
             <img src={logo} alt="Logo" className={styles['logo']} />
@@ -107,7 +107,7 @@ export default function Register() {
           </div>
 
           <Message message={error} type="error" style={{ height: '5%' }} />
-        </DarkBox>
+        </PiggyBox>
       </div>
   )
 

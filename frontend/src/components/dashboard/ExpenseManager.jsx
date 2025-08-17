@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as financeServices from "../../services/financeServices";
-import DarkBox from "../DarkBox";
+import PiggyBox from "../PiggyBox";
 import SelectButton from "../SelectButton";
 import SimpleRadio from "../SimpleRadio";
 import PinkButton from "../PinkButton";
@@ -22,7 +22,7 @@ export default function ExpensesManager() {
     };
 
     return (
-        <DarkBox style={{ width: "45%", height: "90%", background: "#0f0b1f" }}>
+        <PiggyBox style={{ width: "45%", height: "90%", background: "#0f0b1f" }}>
             <div className={styles["dashboard-head"]}>
                 <h4>Expenses</h4>
             </div>
@@ -41,6 +41,6 @@ export default function ExpensesManager() {
                     }}
                 />
             </div>
-        </DarkBox>
+        </PiggyBox>
     );
 }

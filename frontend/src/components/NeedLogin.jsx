@@ -1,5 +1,5 @@
 
-import DarkBox from "./DarkBox";
+import PiggyBox from "./PiggyBox";
 
 export default function NeedLogin({ style }) {
     const CUSTOM_STYLE = {
@@ -10,6 +10,6 @@ export default function NeedLogin({ style }) {
         ...style
     }
 
-    return <div style={ CUSTOM_STYLE }><DarkBox style={{ width : '30%', height: '30%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} ><p>You need to be logged in.</p></DarkBox></div>
+    return <div style={ CUSTOM_STYLE }><PiggyBox style={{ width : '30%', height: '30%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} ><p>You need to be logged in.</p></PiggyBox></div>
 
 }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import API from "../../utils/api";
 import styles from "./Budgets.module.css";
-import nerd from "../../assets/nerd.png";
+import nerd from "../../assets/images/nerd.png";
 import { useAuth } from "../../context/AuthContext";
-import DarkBox from "../../components/DarkBox";
+import PiggyBox from "../../components/PiggyBox";
 import FormField from "../../components/FormField";
 import PinkButton from "../../components/PinkButton";
 import NeedLogin from "../../components/NeedLogin";
@@ -136,7 +136,7 @@ export default function Budgets() {
 
     return (
         <div className={styles["budgets-page"]}>
-            <DarkBox style={{ width: "30%", minWidth: "300px", height: "90%" }}>
+            <PiggyBox style={{ width: "30%", minWidth: "300px", height: "90%" }}>
                 <div style={{ margin: '5% 0 0 0' }}>
                     <img src={nerd} alt="Logo" className={styles['logo']} />
                 </div>
@@ -207,9 +207,9 @@ export default function Budgets() {
                     }}>
                     {error || success || ''}
                 </p>
-            </DarkBox>
+            </PiggyBox>
 
-            <DarkBox style={{ width: "30%", minWidth: "300px", height: "90%" }}>
+            <PiggyBox style={{ width: "30%", minWidth: "300px", height: "90%" }}>
                 <h2 className={styles.title}>Budgets List</h2>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -273,7 +273,7 @@ export default function Budgets() {
                         );
                     })}
                 </ul>
-            </DarkBox>
+            </PiggyBox>
         </div>
     );
 }

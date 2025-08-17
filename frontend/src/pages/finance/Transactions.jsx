@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import API from "../../utils/api"
 import styles from "./Transactions.module.css"
-import nerd from "../../assets/nerd.png"
+import nerd from "../../assets/images/nerd.png"
 import { useAuth } from "../../context/AuthContext"
-import DarkBox from "../../components/DarkBox"
+import PiggyBox from "../../components/PiggyBox"
 import FormField from "../../components/FormField"
 import PinkButton from "../../components/PinkButton"
 import TransactionsView from "../../components/finance/TransactionsView"
@@ -133,7 +133,7 @@ export default function Transactions() {
 
   return (
     <div className={styles["transactions-page"]}>
-      <DarkBox style = {{ width : "30%", height : "90%", minWidth : "300px", minHeight: "800px" }}>
+      <PiggyBox style = {{ width : "30%", height : "90%", minWidth : "300px", minHeight: "800px" }}>
 
         <div style={{margin: '5% 0 0 0' }}> 
             <img src={nerd} alt="Logo" className={styles['logo']} />
@@ -231,12 +231,12 @@ export default function Transactions() {
           }}> {error || success || ''} 
         </p>
 
-      </DarkBox>
+      </PiggyBox>
 
 
-      <DarkBox style ={{ width : "50%", minwidth : "300px", height : "90%", minheight : "100px" }} >
+      <PiggyBox style ={{ width : "50%", minwidth : "300px", height : "90%", minheight : "100px" }} >
         <TransactionsView />
-      </DarkBox>
+      </PiggyBox>
 
     </div>
   );

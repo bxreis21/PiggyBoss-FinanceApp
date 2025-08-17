@@ -1,8 +1,8 @@
 import * as dashboardServices from "../../services/dashboardServices"
 import { useEffect, useState } from "react"
-import DarkBox from "../DarkBox"
+import PiggyBox from "../PiggyBox"
 import SimpleCard from "../SimpleCard"
-import styles from './Dashboard.module.css'
+import styles from './MonthSummary.module.css'
 
 export default function MonthSummary() {
     const [bills, setBills] = useState([])
@@ -35,13 +35,23 @@ export default function MonthSummary() {
     }
 
     const MONTH_SUMMARY = (
-        <DarkBox style={{ width: "95%", height: "90%", minWidth: "600px", background: "#0f0b1f" }}>
+        <PiggyBox style={{ width: "95%", height: "100%", minWidth: "600px", background: "#0f0b1f" }}>
             <div className={styles["dashboard-head"]}>
-                <h4>This month</h4>
+                <p>this month</p>
+                <p style={{ fontSize : '1.3rem' }}>balance overview</p>
+                <p>all banks</p>
             </div>
             <div className={styles["dashboard-content-expenses"]}>
-                <SimpleCard title="Balance" value={balance.balance} width="90%" height="70%" />
-                <SimpleCard title="Current Bills Total" value={billsTotal} width="90%" height="70%" />
+                <SimpleCard title="Balance" value={balance.balance} card_style={{ width: "90%", height: "80%"}} />
+                <SimpleCard title="Current Bills Total" value={billsTotal} card_style={{ width: "90%", height: "80%"}} />
+                <div className={styles["remaining"]}>
+                    <p>Total Expenses</p>
+                    <p>{totalExpenses || 0.00}</p>
+                </div>
+                <div className={styles["remaining"]}>
+                    <p>Remaining Balance Planned</p>
+                    <p>{remaining || 0.00}</p>
+                </div>
                 <div className={styles["remaining"]}>
                     <p>Total Expenses</p>
                     <p>{totalExpenses || 0.00}</p>
@@ -51,7 +61,7 @@ export default function MonthSummary() {
                     <p>{remaining || 0.00}</p>
                 </div>
             </div>
-        </DarkBox>
+        </PiggyBox>
     )
 
     return MONTH_SUMMARY

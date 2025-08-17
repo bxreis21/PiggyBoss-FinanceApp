@@ -1,6 +1,6 @@
 import * as dashboardServices from "../../services/dashboardServices";
 import { useEffect, useState } from "react";
-import DarkBox from "../DarkBox";
+import PiggyBox from "../PiggyBox";
 import styles from "./Dashboard.module.css";
 
 export default function BudgetsOverview() {
@@ -30,18 +30,18 @@ export default function BudgetsOverview() {
   };
 
   const BUDGETS_OVERVIEW = (
-    <DarkBox style={{ width: "45%", height: "90%", minWidth: "300px", background: "#0f0b1f" }}>
+    <PiggyBox style={{ width: "45%", height: "90%", minWidth: "300px", background: "#0f0b1f" }}>
       <div className={styles["dashboard-head"]}>
         <h4>Budgets</h4>
       </div>
 
       <div className={styles["dashboard-content-invoices"]}>
         {budgets.map((element, index) => (
-          <DarkBox key = {index} to="/login" style = {{  width:"90%", height : "25%", background : "#16102f", flexDirection:"row", justifyContent : 'space-between', alignItems : 'center', padding : '5%' }}>
+          <PiggyBox key = {index} to="/login" style = {{  width:"90%", height : "25%", background : "#16102f", flexDirection:"row", justifyContent : 'space-between', alignItems : 'center', padding : '5%' }}>
             
             <p>{element.category_name}</p>
             <p>R$ {parseFloat(element.spent).toFixed(2)} / {parseFloat(element.limit_value).toFixed(2)}</p>
-          </DarkBox>
+          </PiggyBox>
         ))}
       </div>
       
@@ -49,7 +49,7 @@ export default function BudgetsOverview() {
         <p>Total</p>
         <p>R$ {totalSpent.toFixed(2)} / {totalBudgetsLimit.toFixed(2)}</p>
       </div>
-    </DarkBox>
+    </PiggyBox>
   )
 
   return BUDGETS_OVERVIEW;

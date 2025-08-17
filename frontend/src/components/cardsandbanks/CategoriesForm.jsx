@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import FormField from "../../components/FormField";
-import DarkBox from "../DarkBox";
+import PiggyBox from "../PiggyBox";
 import PinkButton from "../PinkButton";
 import API from "../../utils/api";
 import Image from "../Image";
-import logo from "../../assets/nerd.png";
+import logo from "../../assets/images/nerd.png";
 import { useAuth } from "../../context/AuthContext"
 
 
@@ -71,7 +71,7 @@ export default function CategoriesForm( styles ){
     ]
 
     const CATEGORIES_FORM = (
-            <DarkBox 
+            <PiggyBox 
                 style = {{ 
                     height : "65%", 
                     width : "40%",
@@ -149,7 +149,7 @@ export default function CategoriesForm( styles ){
                 <PinkButton text = "Add a Card" style = {{ width: "40%", margin: "5%" }}/>
                 
                 </form>
-            </DarkBox>
+            </PiggyBox>
     )
 
     return CATEGORIES_FORM

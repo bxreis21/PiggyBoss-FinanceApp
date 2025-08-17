@@ -1,5 +1,5 @@
 import * as dashboardServices from "../../services/dashboardServices"
-import DarkBox from "../DarkBox"
+import PiggyBox from "../PiggyBox"
 import BarGraph from "../BarGraph"
 import styles from './Dashboard.module.css'
 import { useEffect, useState } from "react";
@@ -37,14 +37,14 @@ export default function ExpensesGraphs() {
   }
 
   const EXPENSES_GRAPHS = (
-      <DarkBox style = {{ width : "95%", height : "90%", background : "#0f0b1f" }}>
+      <PiggyBox style = {{ width : "95%", height : "90%", background : "#0f0b1f" }}>
           <div className={styles["dashboard-head"]}>
               <h4 >Expenses Planning by Category</h4>
           </div>
           <div className={styles["dashboard-content-expenses-planning"]} style={{ width: '95%', height: '80%' }}>
               {graphData ? <BarGraph data={graphData} /> : <p>Loading data...</p>}
           </div>
-      </DarkBox>
+      </PiggyBox>
   )
 
   return EXPENSES_GRAPHS
