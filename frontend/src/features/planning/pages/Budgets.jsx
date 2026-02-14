@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import API from "../../utils/api";
+import API from "../../../utils/api";
 import styles from "./Budgets.module.css";
 import nerd from "../../assets/images/nerd.png";
-import { useAuth } from "../../context/AuthContext";
-import PiggyBox from "../../components/PiggyBox";
-import FormField from "../../components/FormField";
-import PinkButton from "../../components/PinkButton";
-import NeedLogin from "../../components/NeedLogin";
+import { useAuth } from "../../../context/AuthContext";
+import PiggyBox from "../../../components/PiggyBox";
+import FormField from "../../../components/FormField";
+import PinkButton from "../../../components/PinkButton";
+import NeedLogin from "../../../components/NeedLogin";
 import { useNavigate } from "react-router-dom";
 
 export default function Budgets() {

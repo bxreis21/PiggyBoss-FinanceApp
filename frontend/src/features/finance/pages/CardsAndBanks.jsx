@@ -1,14 +1,14 @@
 import styles from "./CardsAndBanks.module.css"
-import SelectBox from "../../components/cardsandbanks/SelectBox";
-import PiggyBox from "../../components/PiggyBox";
-import BankForm from "../../components/cardsandbanks/BankForm";
-import CardForm from "../../components/cardsandbanks/CardForm";
-import CategoriesForm from "../../components/cardsandbanks/CategoriesForm";
-import TransactionsView from "../../components/finance/TransactionsView"
+import SelectBox from "../../../components/cardsandbanks/SelectBox";
+import PiggyBox from "../../../components/PiggyBox";
+import BankForm from "../../../components/cardsandbanks/BankForm";
+import CardForm from "../../../components/cardsandbanks/CardForm";
+import CategoriesForm from "../../../components/cardsandbanks/CategoriesForm";
+import TransactionsView from "../../../components/finance/TransactionsView"
 import { useState, useEffect } from "react";
-import { useAuth } from "../../context/AuthContext"
-import API from "../../utils/api";
-import * as financeServices from "../../services/financeServices"
+import { useAuth } from "../../../context/AuthContext"
+import API from "../../../utils/api";
+import * as financeServices from "../../../services/financeServices"
 
 
 export default function CardsAndBanks(){

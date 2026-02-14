@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./Account.module.css"
-import logo from "../../assets/images/logo.png";
-import Image from "../../components/Image";
-import FormField from "../../components/FormField";
-import PinkButton from "../../components/PinkButton";
-import PiggyBox from "../../components/PiggyBox";
-import Message from "../../components/Message"; 
-import { useAuth } from '../../context/AuthContext';
+
+import logo from "src/assets/images/logo.png";
+import styles from "../AuthPage.module.css"
+
+import Image from "../../../../shared/components/Image/Image.js";
+import FormField from "../../../../shared/components/FormField.jsx";
+import PinkButton from "../../../../shared/components/PinkButton.jsx";
+import PiggyBox from "../../../../shared/components/PiggyBox.jsx";
+import Message from "../../../../shared/components/Message.jsx"; 
+// import { useAuth } from '../../../context/AuthContext.jsx';
 
 
-export default function Login() {
+export function Login() {
   useEffect(() => {
     document.title = "Login"
     document.body.style.background = 'linear-gradient(135deg, #1E1E2F, #9B59B6)';
@@ -32,7 +34,7 @@ export default function Login() {
     });
   };
 
-  const { login } = useAuth();
+  // const { login } = useAuth();
 
   const [loading, setLoading] = useState(false);
 
@@ -42,14 +44,14 @@ export default function Login() {
 
     setLoading(true)
     try {
-      await login(formData)
-      navigate('/dashboard')
+      // await login(formData)
+      // navigate('/dashboard')
     } catch (err) {
-      if (err.response?.data){
-        setError(Object.values(err.response.data).flat().join(' '))
-      } else {
-        setError('Error.')
-      }
+      // if (err.response?.data){
+      //   setError(Object.values(err.response.data).flat().join(' '))
+      // } else {
+      //   setError('Error.')
+      // }
     } finally {
       setLoading(false);
     }

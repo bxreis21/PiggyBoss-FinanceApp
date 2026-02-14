@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from dotenv import load_dotenv 
 from pathlib import Path
-import os, dj_database_url
+import os
 
 load_dotenv()
 
@@ -103,9 +103,10 @@ WSGI_APPLICATION = 'piggyboss.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'postgresql://{os.getenv("USERNAME_DB")}:{os.getenv("PASSWORD_DB")}@aws-0-sa-east-1.pooler.supabase.com:{os.getenv("PORT_DB")}/postgres'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
     

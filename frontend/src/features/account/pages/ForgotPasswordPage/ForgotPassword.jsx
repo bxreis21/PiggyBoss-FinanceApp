@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./Account.module.css";
-import PiggyBox from "../../components/PiggyBox";
-import FormField from "../../components/FormField";
-import PinkButton from "../../components/PinkButton";
+import PiggyBox from "../../../components/PiggyBox";
+import FormField from "../../../components/FormField";
+import PinkButton from "../../../components/PinkButton";
 import { Link } from "react-router-dom";
-import API from "../../utils/api";
+import API from "../../../../utils/api";
 import modalStyles from "./ForgotPassword.module.css";
 import logo from "../../assets/images/logo.png";
 

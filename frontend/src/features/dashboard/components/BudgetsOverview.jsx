@@ -1,6 +1,6 @@
 import * as dashboardServices from "../../services/dashboardServices";
 import { useEffect, useState } from "react";
-import PiggyBox from "../PiggyBox";
+import PiggyBox from "../../../shared/components/PiggyBox";
 import styles from "./Dashboard.module.css";
 
 export default function BudgetsOverview() {

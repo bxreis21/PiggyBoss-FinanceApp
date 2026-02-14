@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import BanksList from "../../components/dashboard/BanksList";
-import BudgetsOverview from "../../components/dashboard/BudgetsOverview";
-import ExpensesManager from "../../components/dashboard/ExpenseManager";
-import ExpensesGraphs from "../../components/dashboard/ExpensesGraphs";
-import InvoicesOverview from "../../components/dashboard/InvoicesOverview";
-import MonthSummary from "../../components/dashboard/MonthSummary";
+import { useAuth } from "../../../context/AuthContext";
+import BanksList from "../../../components/dashboard/BanksList";
+import BudgetsOverview from "../../../components/dashboard/BudgetsOverview";
+import ExpensesManager from "../../../components/dashboard/ExpenseManager";
+import ExpensesGraphs from "../../../components/dashboard/ExpensesGraphs";
+import InvoicesOverview from "../../../components/dashboard/InvoicesOverview";
+import MonthSummary from "../../../components/dashboard/MonthSummary";
 import styles from "./Dashboard.module.css";
-import NeedLogin from "../../components/NeedLogin";
+import NeedLogin from "../../../components/NeedLogin";
 
 export default function Dashboard(){
     const { userInfo, loading } = useAuth()

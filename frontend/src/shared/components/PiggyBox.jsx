@@ -1,7 +1,7 @@
 import { heIL } from '@mui/material/locale';
 import { Link } from "react-router-dom";
 import styles from './PiggyBox.module.css';
-import { dark_colors, white_colors}  from '../styles/colors';
+import { dark_colors, white_colors}  from '../shared/styles/colors';
 
 export default function PiggyBox({ children, to, style }){
     const CUSTOM_STYLE = {

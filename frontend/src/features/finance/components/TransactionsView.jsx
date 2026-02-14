@@ -3,8 +3,8 @@ import API from "../../utils/api";
 import { useState, useEffect } from "react";
 import styles from "./TransactionsView.module.css";
 import * as financeServices from "../../services/financeServices"
-import SelectTabs from "../SelectTabs";
-import SelectButton from "../SelectButton";
+import SelectTabs from "../../../shared/components/SelectTabs";
+import SelectButton from "../../../shared/components/SelectButton";
 
 export default function TransactionsView({ bank = null, card = null, category = null }){
 

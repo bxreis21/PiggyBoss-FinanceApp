@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Account.module.css";
-import API from "../../utils/api";
+import API from "../../../../utils/api";
 import logo from "../../assets/images/logo.png";
-import FormField from "../../components/FormField"; 
-import PinkButton from "../../components/PinkButton";
-import PiggyBox from "../../components/PiggyBox";
-import Message from "../../components/Message";
+import FormField from "../../../components/FormField"; 
+import PinkButton from "../../../components/PinkButton";
+import PiggyBox from "../../../components/PiggyBox";
+import Message from "../../../components/Message";
 
 export default function Register() {
   useEffect(() => {
