@@ -1,20 +1,7 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 import API from "../../shared/services/api.js";
 import type { JSX } from "@emotion/react/jsx-runtime";
-
-type UserInfo = Record<string, any> | null
-
-interface LoginCredentials {
-  [key: string]: any
-  password?: string
-}
-
-interface AuthContextType {
-  userInfo: UserInfo
-  loading: boolean
-  login: (credentials: LoginCredentials) => Promise<any>
-  logout: () => void
-}
+import type { UserInfo, LoginCredentials, AuthContextType } from "./providers.types.js";
 
 const AuthContext = createContext<AuthContextType | null>(null)
 const REFRESH_URL = "login/refresh/"

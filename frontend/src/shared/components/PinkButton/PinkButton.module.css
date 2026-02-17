@@ -1,15 +1,18 @@
 .pink-button {
   background: var(--piggy-pink);
   color: var(--font);
-  border: none;
-  padding: 0.8rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
   font-size: 1rem;
+  
+  cursor: pointer;
   transition: background 0.3s ease;
+
   width: auto;
   height: auto;
+
   margin: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
 }
 
 .pink-button:hover {

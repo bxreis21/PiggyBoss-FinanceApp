@@ -61,7 +61,7 @@ export function Login() {
     <div className={styles['account-page']}>
         <PiggyBox variant="primary" size="md" >
           <div> 
-            <Image scr={logo} size="lg" />
+            <Image src={logo} size="lg" />
           </div>
           <form onSubmit={handleSubmit} style={{ width: '100%', height: '55%'}}>
             <div className={styles['form-container']}>

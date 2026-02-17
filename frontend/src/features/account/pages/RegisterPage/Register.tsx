@@ -75,7 +75,7 @@ export default function Register() {
         <PiggyBox variant="primary" size="xl">
 
           <div>
-            <Image scr={logo} size="md" />
+            <Image src={logo} size="md" />
           </div>
 
           <form onSubmit={handleSubmit} className="w-full h-5/6">
