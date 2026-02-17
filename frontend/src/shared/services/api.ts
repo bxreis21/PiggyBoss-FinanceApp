@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 let isRefreshing = false;
-let failedQueue = [];
+let failedQueue: any[] = [];
 const REFRESH_URL = "http://127.0.0.1:8000/account/login/refresh/";
 
-const processQueue = (error, token = null) => {
+const processQueue = ({ error, token = null }: { error: any; token: string|null }) => {
+
   failedQueue.forEach(prom => {
     if (error) {
       prom.reject(error);
@@ -16,7 +17,8 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
-const createAPI = (baseURL) => {
+const createAPI = (baseURL: string) => {
+  
   const instance = axios.create({ baseURL })
 
   instance.interceptors.request.use(config => {
@@ -57,15 +59,15 @@ const createAPI = (baseURL) => {
             { refresh: refreshToken }
           )
 
-          const newAccess = response.data.access
+          const newAccess: string = response.data.access
 
           localStorage.setItem("token", newAccess)
           instance.defaults.headers.common["Authorization"] = `Bearer ${newAccess}`;
-          processQueue(null, newAccess);
+          processQueue({ error: null, token: newAccess });
           return instance(originalRequest);
 
           } catch (refreshErr) {
-            processQueue(refreshErr, null);
+            processQueue({ error: refreshErr, token: null });
             localStorage.removeItem("token");
             localStorage.removeItem("refresh");
             return Promise.reject(refreshErr);
@@ -83,10 +85,10 @@ const createAPI = (baseURL) => {
 };
 
 const API = {
-  account: axios.create({baseURL: 'http://localhost:8000/account'}),
-  finance: createAPI('http://localhost:8000/finance'),
-  dashboard: createAPI('http://localhost:8000/dashboard'),
-  planning: createAPI('http://localhost:8000/planning'),
+  account: axios.create({baseURL: 'http://127.0.0.1:8000/account'}),
+  finance: createAPI('http://127.0.0.1:8000/finance'),
+  dashboard: createAPI('http://127.0.0.1:8000/dashboard'),
+  planning: createAPI('http://127.0.0.1:8000/planning'),
 }
 
 export default API;

@@ -1,4 +1,4 @@
-import API from "../utils/api"
+import API from "../../../shared/services/api"
 
 const handleError = (err) => {
     if (err.response?.status === 401) {

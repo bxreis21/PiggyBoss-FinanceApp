@@ -1,5 +1,5 @@
 .error-message {
-  color: #c0392b;
+  color: var(--bad-red);
   border-radius: 0.5rem;
   width: 100%;
   text-align: center;
@@ -7,7 +7,7 @@
 }
 
 .success-message {
-  color: #2ecc71;
+  color: var(--good-green);
   border-radius: 0.5rem;
   width: 100%;
   text-align: center;

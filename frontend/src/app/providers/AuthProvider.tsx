@@ -1,15 +1,30 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-import API from "../utils/api";
+import API from "../../shared/services/api.js";
+import type { JSX } from "@emotion/react/jsx-runtime";
 
-const AuthContext = createContext()
+type UserInfo = Record<string, any> | null
+
+interface LoginCredentials {
+  [key: string]: any
+  password?: string
+}
+
+interface AuthContextType {
+  userInfo: UserInfo
+  loading: boolean
+  login: (credentials: LoginCredentials) => Promise<any>
+  logout: () => void
+}
+
+const AuthContext = createContext<AuthContextType | null>(null)
 const REFRESH_URL = "login/refresh/"
 
-export function AuthProvider({ children }) {
-  const [userInfo, setUserInfo] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const refreshed = useRef(false);
+export function AuthProvider({ children }: { children: React.ReactNode }): JSX.Element {
+  const [userInfo, setUserInfo] = useState<UserInfo>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const refreshed = useRef<boolean>(false)
 
-  const fetchUserInfo = async () => {
+  const fetchUserInfo = async (): Promise<void> => {
     const token = localStorage.getItem("token")
     const refresh = localStorage.getItem("refresh")
 
@@ -25,7 +40,7 @@ export function AuthProvider({ children }) {
       });
       setUserInfo(res.data)
       refreshed.current = false
-    } catch (err) {
+    } catch (err: any) {
       if (err.response?.status === 401 && refresh){
         try {
           refreshed.current = true
@@ -52,7 +67,7 @@ export function AuthProvider({ children }) {
     fetchUserInfo();
   }, []);
 
-  const login = async (credenciais) => {
+  const login = async (credenciais: LoginCredentials): Promise<any> => {
   try {
     const res = await API.account.post('/login/', credenciais)
     localStorage.setItem('token', res.data.access)

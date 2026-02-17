@@ -1,4 +1,4 @@
-import API from "../utils/api"
+import API from "../../../shared/services/api"
 
 export const fetchTransactions = async () => {
 

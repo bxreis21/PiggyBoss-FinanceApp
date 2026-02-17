@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { AuthProvider } from '../context/AuthContext.jsx';
-// import './shared/styles/App.css';
+import { AuthProvider } from './providers/AuthProvider.jsx';
 import { Login } from '../features/account/pages/LoginPage/Login.js';
 // import Register from './pages/account/Register.jsx';
 // import NavBar from '../components/app/NavBar.jsx';
@@ -13,8 +12,8 @@ import { Login } from '../features/account/pages/LoginPage/Login.js';
 export default function App() {
   return (
     <Router>
-      {/* <AuthProvider>
-        <NavBar /> */}
+      <AuthProvider>
+        {/* <NavBar /> */}
         <Routes>
           <Route path="/" element={<Login />} />
           {/* <Route path="/register" element={<Register />} />
@@ -24,7 +23,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/budgets" element={<Budgets />} /> */}
       </Routes>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </Router>
   );
 }
