@@ -4,6 +4,7 @@
   width: 100%;
   text-align: center;
   font-size: 1rem;
+  padding: 0.5rem;
 }
 
 .success-message {
@@ -12,4 +13,5 @@
   width: 100%;
   text-align: center;
   font-size: 1rem;
+  padding: 0.5rem;
 }

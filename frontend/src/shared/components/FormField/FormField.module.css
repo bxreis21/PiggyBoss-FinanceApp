@@ -1,11 +1,12 @@
 .form-field {
   text-align: left;
   height: auto;
+  width: 75%;
 }
 
 .form-field label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin: 0.1rem;
   color: #ccc;
   font-size: 0.9rem;
 }
@@ -34,12 +35,10 @@
   font-size: 1rem;
 }
 
-/* Estilo para a opção desabilitada de placeholder */
 .form-field select option[disabled] {
   color: #aaa;
 }
 
-/* Quando nada for selecionado (select ainda inválido) */
 .form-field select:invalid {
   color: #aaa;
 }

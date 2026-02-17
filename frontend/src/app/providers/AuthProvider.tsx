@@ -68,16 +68,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }): JSX.E
   }, []);
 
   const login = async (credenciais: LoginCredentials): Promise<any> => {
-  try {
-    const res = await API.account.post('/login/', credenciais)
-    localStorage.setItem('token', res.data.access)
-    localStorage.setItem('refresh', res.data.refresh)
-    await fetchUserInfo()
-    return res.data
-  } catch (err) {
-    return Promise.reject(err)
-  }
-};
+    try {
+      const res = await API.account.post('/login/', credenciais)
+      localStorage.setItem('token', res.data.access)
+      localStorage.setItem('refresh', res.data.refresh)
+      await fetchUserInfo()
+      return res.data
+    } catch (err) {
+      return Promise.reject(err)
+    }
+  };
 
   const logout = () => {
     localStorage.removeItem("token")

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './providers/AuthProvider.jsx';
 import { Login } from '../features/account/pages/LoginPage/Login.js';
-// import Register from './pages/account/Register.jsx';
+import Register from '../features/account/pages/RegisterPage/Register.js';
 // import NavBar from '../components/app/NavBar.jsx';
 // import Dashboard from './pages/dashboard/Dashboard.jsx';
 // import CardsAndBanks from './pages/finance/CardsAndBanks.jsx';
@@ -16,8 +16,8 @@ export default function App() {
         {/* <NavBar /> */}
         <Routes>
           <Route path="/" element={<Login />} />
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/register" element={<Register />} />
+          {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/cardsandbanks" element={<CardsAndBanks />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/dashboard" element={<Dashboard />} />

@@ -2,26 +2,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: var(--w);
+  height: var(--h);
   border-radius: 1rem;
 }
 
-.sm {
-  width: 300px;
-  height: 400px;
-  padding: 20px;
+.horizontal {
+  width: var(--h);
+  height: var(--w);
 }
 
-.md {
-  width: 400px;
-  height: 500px;
-  padding: 30px;
+.horizontal.flex {
+  flex-direction: row;
 }
 
-.lg {
-  width: 500px;
-  height: 600px;
-  padding: 40px;
-}
+.sm { --w: 300px; --h: 400px; }
+.md { --w: 400px; --h: 500px; }
+.lg { --w: 500px; --h: 600px; }
+.xl { --w: 600px; --h: 700px; }
+.xxl { --w: 700px; --h: 800px; }
 
 .primary {
   background-color: var(--strong-tech);

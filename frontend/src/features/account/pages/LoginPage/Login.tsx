@@ -13,12 +13,6 @@ import { useAuth } from '../../../../app/providers/AuthProvider.jsx';
 
 
 export function Login() {
-  useEffect(() => {
-    document.title = "Login"
-    return () => {
-      document.title = ''
-    };
-  }, []);
 
   const navigate = useNavigate();
   
@@ -62,11 +56,12 @@ export function Login() {
       setLoading(false);
     }
   };
+
   const LOGIN_PAGE = (
     <div className={styles['account-page']}>
-        <PiggyBox variant="primary" size="md">
+        <PiggyBox variant="primary" size="md" >
           <div> 
-            <Image scr={logo} size="md" />
+            <Image scr={logo} size="lg" />
           </div>
           <form onSubmit={handleSubmit} style={{ width: '100%', height: '55%'}}>
             <div className={styles['form-container']}>
@@ -94,16 +89,8 @@ export function Login() {
                 style = {{ width: "80%" }}
               />
 
-              <div style={{ width: "80%", textAlign: "center", marginBottom: "1rem" }}>
-                <Link
-                  to="/forgot-password"
-                  style={{
-                    textDecoration: "underline",
-                    color: "inherit",
-                    fontSize: "0.95rem",
-                    cursor: "pointer"
-                  }}
-                >
+              <div className="mt-1">
+                <Link to="/forgot-password" className="underline">
                   Forgot password?
                 </Link>
               </div>
@@ -114,7 +101,7 @@ export function Login() {
           </form>
 
           <div>
-            <p>Don't have an account? <Link to="/register" style={{ textDecoration: 'underline', color: 'inherit' }} >Sign up</Link></p>
+            <p>Don't have an account? <Link to="/register" style={{ textDecoration: 'underline', color: 'inherit' }}>Sign up</Link></p>
           </div>
 
           <Message message={error} type="error"/>
