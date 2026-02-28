@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../../../../assets/images/logo.png";
-import styles from "../AuthPage.module.css"
+
+import Centralize from "../../layouts/Centralize.js";
+import FormContainer from "../../layouts/FormContainer.js";
 
 import Image from "../../../../shared/components/Image/Image.js";
 import FormField from "../../../../shared/components/FormField/FormField.jsx";
@@ -58,13 +60,15 @@ export function Login() {
   };
 
   const LOGIN_PAGE = (
-    <div className={styles['account-page']}>
-        <PiggyBox variant="primary" size="md" >
-          <div> 
-            <Image src={logo} size="lg" />
-          </div>
+    <Centralize>
+      <div className="h-[55%] w-[20%] min-w-[400px] min-h-[300px]" >
+
+        <PiggyBox variant="primary">
+
+          <Image src={logo} size="lg" />
+
           <form onSubmit={handleSubmit} style={{ width: '100%', height: '55%'}}>
-            <div className={styles['form-container']}>
+            <FormContainer>
               <FormField
                 key="email"
                 name="email"
@@ -74,7 +78,6 @@ export function Login() {
                 onChange=  {handleChange} 
                 placeholder="Enter your e-mail" 
                 required={true}
-                style = {{ width: "80%" }}
               />
 
               <FormField
@@ -85,8 +88,7 @@ export function Login() {
                 value={formData.password}
                 onChange=  {handleChange} 
                 placeholder="Enter your password" 
-                required={true} 
-                style = {{ width: "80%" }}
+                required={true}
               />
 
               <div className="mt-1">
@@ -97,7 +99,7 @@ export function Login() {
 
               <PinkButton text="Sign in"/>
 
-              </div>
+            </FormContainer>  
           </form>
 
           <div>
@@ -107,7 +109,8 @@ export function Login() {
           <Message message={error} type="error"/>
 
         </PiggyBox>
-    </div>
+      </div>
+    </Centralize>
   );
 
   return LOGIN_PAGE

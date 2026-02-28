@@ -2,25 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: var(--w);
-  height: var(--h);
+  width: 100%;
+  height: 100%;
   border-radius: 1rem;
 }
-
-.horizontal {
-  width: var(--h);
-  height: var(--w);
-}
-
-.horizontal.flex {
-  flex-direction: row;
-}
-
-.sm { --w: 300px; --h: 400px; }
-.md { --w: 400px; --h: 500px; }
-.lg { --w: 500px; --h: 600px; }
-.xl { --w: 600px; --h: 700px; }
-.xxl { --w: 700px; --h: 800px; }
 
 .primary {
   background-color: var(--strong-tech);

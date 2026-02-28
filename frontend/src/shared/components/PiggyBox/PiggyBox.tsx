@@ -4,17 +4,13 @@ import styles from './PiggyBox.module.css';
 interface PiggyBoxProps {
     children: React.ReactNode;
     variant: 'primary' | 'secondary';
-    size: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-    horizontal?: boolean;
 }
 
-export default function PiggyBox({ children, variant, size, horizontal}: PiggyBoxProps){
+export default function PiggyBox({ children, variant }: PiggyBoxProps){
     return (
         <div className={[
         styles.box,
-        styles[variant],
-        styles[size],
-        styles[horizontal ? 'horizontal' : 'vertical']
+        styles[variant]
     ].join(" ")}>
             {children}
         </div>

@@ -3,6 +3,7 @@ import { AuthProvider } from './providers/AuthProvider.jsx';
 import { Login } from '../features/account/pages/LoginPage/Login.js';
 import Register from '../features/account/pages/RegisterPage/Register.js';
 import NavBar from '../features/navbar/NavBar.js'
+import Finance from '../features/finance/pages/FinancePage/Finance.js';
 // import Dashboard from './pages/dashboard/Dashboard.jsx';
 // import CardsAndBanks from './pages/finance/CardsAndBanks.jsx';
 // import ForgotPassword from "./pages/account/ForgotPassword";
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/finance" element={<Finance />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/cardsandbanks" element={<CardsAndBanks />} />
           <Route path="/transactions" element={<Transactions />} />

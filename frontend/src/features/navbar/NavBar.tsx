@@ -19,9 +19,7 @@ export default function NavBar(){
                 <div className={styles['left-side']}>
                     <Image src={logo} size="sm" />  
                     <Link to="/dashboard" className={styles['nav-link']}>Dashboard</Link>
-                    <Link to="/cardsandbanks" className={styles['nav-link']}>Cards And Banks</Link>
-                    <Link to="/transactions" className={styles['nav-link']}>Transactions</Link>
-                    <Link to="/budgets" className={styles['nav-link']}>Budgets</Link>
+                    <Link to="/finance" className={styles['nav-link']}>Finance</Link>
                 </div>
             ) : (
                 <div className={styles['left-side']}>

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../AuthPage.module.css";
 
 import logo from "../../../../assets/images/logo.png";
 
 import { registerUser } from "../../service.js";
+
+import Centralize from "../../layouts/Centralize.js";
+import FormContainer from "../../layouts/FormContainer.js";
 
 import Image from "../../../../shared/components/Image/Image.js";
 import FormField from "../../../../shared/components/FormField/FormField.jsx";
@@ -71,15 +73,16 @@ export default function Register() {
   ];
 
   const REGISTER_PAGE = (
-    <div className={styles['account-page']}>
-        <PiggyBox variant="primary" size="xl">
+    <Centralize>
+      <div className="h-[75%] w-[25%] min-w-[400px] min-h-[300px]" >
 
-          <div>
-            <Image src={logo} size="md" />
-          </div>
+        <PiggyBox variant="primary">
+          
+          <Image src={logo} size="md" />
 
           <form onSubmit={handleSubmit} className="w-full h-5/6">
-            <div className={styles['form-container']}>
+            <FormContainer>
+
               {
                 FIELDS.map(
                   (field) => (
@@ -96,17 +99,22 @@ export default function Register() {
                   )
                 )
               }
-              <PinkButton text="Sign up" />
-            </div>
-          </form>
 
+              <PinkButton text="Sign up" />
+
+            </FormContainer>
+          </form>
+          
           <div style={{ padding: "5% 0 0 0", height: "8%" }}>
             <p>Already have an account? <Link to="/" style={{ textDecoration: 'underline', color: 'inherit' }} >Sign in</Link></p>
           </div>
-
+          
           <Message message={error} type="error" />
+          
         </PiggyBox>
+
       </div>
+    </Centralize>
   )
 
   return REGISTER_PAGE

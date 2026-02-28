@@ -9,14 +9,13 @@ interface FormFieldProps {
     onChange: any;
     placeholder: string;
     required?: boolean;
-    style?: React.CSSProperties;
     children?: React.ReactNode;
 }
 
 
-export default function FormField({ name, label, type, value, onChange, placeholder, required = false, style, children }: FormFieldProps){
+export default function FormField({ name, label, type, value, onChange, placeholder, required = false, children }: FormFieldProps){
 
-    return <div className={styles['form-field']} style={{...style}}>
+    return <div className={styles['form-field']}>
         <label htmlFor={label}>{label}</label>
         {children ? (
             children
