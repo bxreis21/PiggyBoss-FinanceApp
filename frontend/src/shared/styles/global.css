@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 { @apply text-3xl font-medium; }
+  h2 { @apply text-2xl font-medium; }
+  h3 { @apply text-xl font-medium; }
+  h4 { @apply text-lg font-medium; }
+}
+
 :root {
   /* common */
   --strong-pink: #F1109B;
@@ -36,7 +43,6 @@
     font-weight: normal;
   }
   font-family: 'Poppins', sans-serif;
-  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

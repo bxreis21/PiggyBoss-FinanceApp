@@ -1,8 +1,31 @@
-.finance-page {
+.finance {
+    display: grid;
+    grid-template-rows: 8% 90%;
+
+    width: 100%;
+    height: 100%;
+}
+
+.banks__header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+}
+
+.banks__content {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: flex-start;
+    align-items: center;
+
     width: 100%;
     height: 100%;
 
-    margin: 3%;
-    display: grid;
-    grid-template-columns: 35fr 65fr;
+    padding: 2% 0;
+    gap: 2%;
 }
