@@ -20,3 +20,8 @@
     color: var(--text-secondary);
     margin: auto;
 }
+
+.line:hover {
+    background-color: var(--week-tech);
+    cursor: pointer;
+}

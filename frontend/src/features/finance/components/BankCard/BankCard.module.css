@@ -16,6 +16,12 @@
     background-color: transparent;
 }
 
+.card:hover {
+    cursor: pointer;
+    background-color: var(--tech-hover);
+    border: 2px solid var(--purple-purple);
+}
+
 .card__header {
     display: flex;
 
