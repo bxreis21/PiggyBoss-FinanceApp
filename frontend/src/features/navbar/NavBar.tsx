@@ -39,7 +39,7 @@ export default function NavBar(){
                         </button>
                     </>
                 ) : (
-                    <Link to="/" className={styles['nav-link']}>Login</Link>
+                    <Link to="/account/login" className={styles['nav-link']}>Login</Link>
                 )}
                 
             </div>

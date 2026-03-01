@@ -14,7 +14,7 @@ import Message from "../../../../shared/components/Message/Message.js";
 import { useAuth } from '../../../../app/providers/AuthProvider.jsx';
 
 
-export function Login() {
+export default function Login() {
 
   const navigate = useNavigate();
   
@@ -103,7 +103,7 @@ export function Login() {
           </form>
 
           <div>
-            <p>Don't have an account? <Link to="/register" style={{ textDecoration: 'underline', color: 'inherit' }}>Sign up</Link></p>
+            <p>Don't have an account? <Link to="/account/register" style={{ textDecoration: 'underline', color: 'inherit' }}>Sign up</Link></p>
           </div>
 
           <Message message={error} type="error"/>

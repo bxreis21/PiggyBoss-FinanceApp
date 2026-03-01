@@ -52,7 +52,7 @@ export default function Register() {
       });
 
       setError('');
-      navigate('/', { state: { successMessage: 'Cadastro realizado com sucesso!' } });;
+      navigate('/account/login', { state: { successMessage: 'Cadastro realizado com sucesso!' } });;
       
     } catch (err: any) {
       if (err.response?.data){
@@ -105,9 +105,7 @@ export default function Register() {
             </FormContainer>
           </form>
           
-          <div style={{ padding: "5% 0 0 0", height: "8%" }}>
-            <p>Already have an account? <Link to="/" style={{ textDecoration: 'underline', color: 'inherit' }} >Sign in</Link></p>
-          </div>
+          <p>Already have an account? <Link to="/account/login" style={{ textDecoration: 'underline', color: 'inherit' }} >Sign in</Link></p>
           
           <Message message={error} type="error" />
           

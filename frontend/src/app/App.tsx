@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './providers/AuthProvider.jsx';
-import { Login } from '../features/account/pages/LoginPage/Login.js';
-import Register from '../features/account/pages/RegisterPage/Register.js';
+
+
 import NavBar from '../features/navbar/NavBar.js'
-import Finance from '../features/finance/pages/FinancePage/Finance.js';
+
+import Home from '../features/home/Home.js';
+import AccountRoutes from '../features/account/routes.js';
+import FinanceRoutes from '../features/finance/routes.js';
 // import Dashboard from './pages/dashboard/Dashboard.jsx';
 // import CardsAndBanks from './pages/finance/CardsAndBanks.jsx';
 // import ForgotPassword from "./pages/account/ForgotPassword";
@@ -16,15 +19,10 @@ export default function App() {
       <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/finance" element={<Finance />} />
-          {/* <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/cardsandbanks" element={<CardsAndBanks />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/budgets" element={<Budgets />} /> */}
-      </Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/account/*" element={<AccountRoutes />} />
+          <Route path="/finance/*" element={<FinanceRoutes />} />
+        </Routes>
       </AuthProvider>
     </Router>
   );
