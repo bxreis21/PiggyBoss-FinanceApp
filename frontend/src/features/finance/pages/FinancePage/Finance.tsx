@@ -4,18 +4,19 @@ import Centralize from '../../../account/layouts/Centralize.js'
 
 import BankCard from '../../components/BankCard/BankCard.js'
 import PiggyBox from '../../../../shared/components/PiggyBox/PiggyBox.js'
+import PiggyTable from '../../components/PiggyTable/PiggyTable.js'
 
 export default function Finance() {
     
     const FINANCE_PAGE = (
-        <div className="grid grid-cols-[35%_65%] h-[95%] p-50">
+        <div className="grid grid-cols-[30%_70%] h-[95%] p-50">
             
             <Centralize>
-                <div className='h-[90%] w-[80%]'>
+                <div className='h-[90%] w-[85%]'>
 
                     <PiggyBox variant='primary' border={true}>
                         <div className={styles.finance}>
-                            <div className={styles.banks__header}>
+                            <div className={styles.header}>
                                 <h3 className='ml-3'> Banks Accounts </h3>
                                 <h3 className='mr-3'> Add </h3>
                             </div>
@@ -37,14 +38,24 @@ export default function Finance() {
             </Centralize>
             
             <Centralize>
-                <div className='h-[90%] w-[100%] mr-20'>
+                <div className='h-[90%] w-[100%] mr-10'>
 
                     <PiggyBox variant='primary' border={true}>
-                        <div>
-                            <h1>oi</h1>
+                        <div className={styles.finance}>
+                            <div className={styles.header}>
+                                <p className='ml-4'>Expense</p>
+                                <h3 className='mx-3'>Transactions</h3>
+                                <p className='mr-4'>Mar</p>
+                            </div>
+
+                            <div className={styles.transactions__content}>
+                                <PiggyTable />
+                            </div>
                         </div>
+
+                        
+
                     </PiggyBox>
-                    
                 </div>
             </Centralize>
             

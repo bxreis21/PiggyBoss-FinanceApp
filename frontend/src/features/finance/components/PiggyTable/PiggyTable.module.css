@@ -1,0 +1,22 @@
+.piggy__table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.line {
+    display: grid;
+    grid-template-rows: 1fr;
+    
+    height: 35px;
+    width: 95%;
+
+    text-align: center;
+    border-bottom: 1px solid var(--purple-purple);
+}
+
+.line p {
+    color: var(--text-secondary);
+    margin: auto;
+}
