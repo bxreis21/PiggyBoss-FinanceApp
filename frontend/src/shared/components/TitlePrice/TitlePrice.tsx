@@ -1,6 +1,4 @@
-import { color } from "chart.js/helpers";
-
-export function TitlePrice({ title, price, priceColor }: { title: string; price: number; priceColor?: string }) {
+export default function TitlePrice({ title, price, priceColor }: { title: string; price: number; priceColor?: string }) {
     return (
         <div className="w-full flex items-center justify-between">
             <h4 className="m-0">{title}</h4>
