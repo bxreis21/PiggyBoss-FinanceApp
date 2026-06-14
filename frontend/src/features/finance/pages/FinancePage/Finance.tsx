@@ -47,14 +47,8 @@ export default function Finance() {
                                 <h3 className='mx-3'>Transactions</h3>
                                 <p className='mr-4'>Mar</p>
                             </div>
-
-                            <div className={styles.transactions__content}>
-                                <PiggyTable />
-                            </div>
+                            <PiggyTable />
                         </div>
-
-                        
-
                     </PiggyBox>
                 </div>
             </Centralize>

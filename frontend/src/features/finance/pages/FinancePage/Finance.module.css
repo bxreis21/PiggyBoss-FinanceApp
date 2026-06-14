@@ -29,13 +29,3 @@
     padding: 2% 0;
     gap: 2%;
 }
-
-.transactions__content {
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: flex-start;
-    align-items: center;
-
-    width: 100%;
-}
