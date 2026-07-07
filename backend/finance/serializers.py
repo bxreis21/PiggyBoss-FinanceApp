@@ -1,53 +1,32 @@
 from rest_framework import serializers
-from .models import *
+from .models import (
+    Institution,
+    BankAccount,
+    Category,
+    ThirdParty,
+    Transactions,
+    CreditCardBill,
+)
+
 
 class InstitutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Institution
         fields = "__all__"
-        read_only_fields = ['name','code','institution_type','active','created_at']
+        read_only_fields = ['created_at', 'updated_at']
+
 
 class BankAccountSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = BankAccount
         fields = "__all__"
-        read_only_fields = ['user']  
+        read_only_fields = ['user']
         depth = 1
 
-    account_type = serializers.ChoiceField(
-        choices = [
-            ('checking', 'Checking'), 
-            ('savings', 'Savings'),
-            ('investment', 'Investment'),
-            ('joint', 'Joint')
-        ],
-        error_messages = {
-            'invalid_choice' : 'The account type must be one of the following: ' \
-            + 'Checking, Savings, Investment, Joint'
-        }
-    )
-
-    # institution = serializers.PrimaryKeyRelatedField(
-    #     queryset=Institution.objects.all(),
-    #     required=False,
-    #     allow_null=True
-    # )
-    
-    def create(self, validated_data):
-        print("validated_data:", validated_data)
-        validated_data['user'] = self.context['request'].user
-        return super().create(validated_data)
-
-class CardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Card
-        fields = "__all__"
-        read_only_fields = ['user']
-    
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,12 +35,12 @@ class CategorySerializer(serializers.ModelSerializer):
         read_only_fields = ['user']
 
     balance_type = serializers.ChoiceField(
-        choices = [
+        choices=[
             ('expenses', 'Expenses'),
-            ('income', 'Income')
+            ('income', 'Income'),
         ],
-        error_messages = {
-            'invalid_input' : 'invalid balance_type'
+        error_messages={
+            'invalid_input': 'invalid balance_type'
         }
     )
 
@@ -69,16 +48,18 @@ class CategorySerializer(serializers.ModelSerializer):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
-class ThirdSerializer(serializers.ModelSerializer):
+
+class ThirdPartySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Third
+        model = ThirdParty
         fields = "__all__"
         read_only_fields = ['user']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
-    
+
+
 class TransactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transactions
@@ -86,24 +67,22 @@ class TransactionsSerializer(serializers.ModelSerializer):
         read_only_fields = ['user']
 
     transactions_type = serializers.ChoiceField(
-        choices = [
+        choices=[
             ('income', 'Income'),
             ('expense', 'Expense'),
         ],
-        error_messages = {
-            'invalid_input' : 'Transaction type input must be income or expense'
+        error_messages={
+            'invalid_input': 'Transaction type input must be income or expense'
         }
     )
 
     payment_method = serializers.ChoiceField(
-        choices = [
-            ('card', 'Card'),
-            ('cash', 'Cash'),
-            ('pix', 'Pix')
+        choices=[
+            ('debit', 'Debit'),
+            ('credit', 'Credit'),
         ],
-        error_messages = {
-            'invalid_choice' : 'The payment_method must be one of the following: ' \
-            + 'Card, Cash or Pix'
+        error_messages={
+            'invalid_choice': 'The payment_method must be one of the following: Debit or Credit'
         }
     )
 
@@ -111,11 +90,12 @@ class TransactionsSerializer(serializers.ModelSerializer):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
+
 class CreditCardBillSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCardBill
         fields = "__all__"
-        read_only_fields = ['user', 'status']
+        read_only_fields = ['user']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
