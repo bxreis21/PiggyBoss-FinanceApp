@@ -5,17 +5,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from datetime import date
 
 class Institution(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    code = models.CharField(max_length=50, unique=True)
-    institution_type = models.CharField(
-        max_length=20,
-        choices=[
-            ('bank', 'Bank'),
-            ('broker', 'Broker'),
-            ('fintech', 'Fintech'),
-            ('other', 'Other'),
-        ]
-    )
+    image = models.ImageField(upload_to='institution_images', null=True, blank=True)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -29,15 +21,7 @@ class Institution(models.Model):
 
 class BankAccount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bank_accounts")
-    institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, null=True, blank=True, related_name="bank_accounts")
-    account_type = models.CharField(max_length=20, 
-        choices=[
-        ('checking', 'Checking'), 
-        ('savings', 'Savings'),
-        ('investment', 'Investment'),
-        ('joint', 'Joint')
-        ]
-    )
+    institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, related_name="bank_accounts")
 
     def __str__(self):
         return self.institution.name
@@ -46,19 +30,6 @@ class BankAccount(models.Model):
         verbose_name = "Bank Account"
         verbose_name_plural = "Bank Accounts"
 
-class Card(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cards')
-    name = models.CharField(max_length=30)
-    bank = models.ForeignKey(BankAccount, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name = "Card"
-        verbose_name_plural = "Cards"
 
 class Category(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='category')
@@ -76,18 +47,17 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
-class Third(models.Model):
+
+
+class ThirdParty(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='thirds')
     name = models.CharField(max_length=30)
-    related = models.CharField(max_length=30)
-    age = models.IntegerField()    
-    number = PhoneNumberField(region="BR")
+    relation = models.CharField(max_length=30)  
 
     class Meta:
-        verbose_name = "Third"
-        verbose_name_plural = "Thirds"
-    
+        verbose_name = "Third Party"
+        verbose_name_plural = "Third Parties"
+
     def __str__(self):
         return self.name
 
@@ -106,11 +76,11 @@ class Transactions(models.Model):
         ('debit', 'Debit'),
         ('credit', 'Credit'),
         ])
-    card = models.ForeignKey(Card, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     bank = models.ForeignKey(BankAccount, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
-    third = models.ForeignKey(Third, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
+    third_party = models.ForeignKey(ThirdParty, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Transaction"
@@ -120,12 +90,11 @@ class Transactions(models.Model):
         return self.name
 
 
-# refatorar para que as transações aponte para uma bill
 class CreditCardBill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bills')
-    card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='bills')
-    bill_date = models.DateField()
-    due_date = models.DateField()
+    bank = models.ForeignKey(BankAccount, on_delete=models.CASCADE, related_name='bills')
+    start_date = models.DateField()
+    maturity_date = models.DateField()
     status = models.CharField(max_length=20, 
         choices=[
         ('paid', 'Paid'),
@@ -139,4 +108,4 @@ class CreditCardBill(models.Model):
         verbose_name_plural = "Credit Card Bills"
 
     def __str__(self):
-        return self.bill_date
+        return self.start_date
