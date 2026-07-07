@@ -19,14 +19,6 @@ class BankAccountViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return BankAccount.objects.filter(user=self.request.user)
 
-class CardViewSet(viewsets.ModelViewSet):
-    queryset = Card.objects.all()
-    serializer_class = CardSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Card.objects.filter(user=self.request.user)
-
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -35,13 +27,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Category.objects.filter(user=self.request.user)
 
-class ThirdViewSet(viewsets.ModelViewSet):
-    queryset = Third.objects.all()
-    serializer_class = ThirdSerializer
+class ThirdPartyViewSet(viewsets.ModelViewSet):
+    queryset = ThirdParty.objects.all()
+    serializer_class = ThirdPartySerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Third.objects.filter(user=self.request.user)
+        return ThirdParty.objects.filter(user=self.request.user)
 
 class TransactionsViewSet(viewsets.ModelViewSet):
     queryset = Transactions.objects.all()
