@@ -5,9 +5,8 @@ from .views import *
 router = DefaultRouter()
 router.register(r'institution', InstitutionViewSet)
 router.register(r'bank_account', BankAccountViewSet)
-router.register(r'card', CardViewSet)
 router.register(r'category', CategoryViewSet)
-router.register(r'third', ThirdViewSet)
+router.register(r'third_party', ThirdPartyViewSet)
 router.register(r'transactions', TransactionsViewSet)
 router.register(r'creditcardbill', CreditCardBillViewSet)
 
