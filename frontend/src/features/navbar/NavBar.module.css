@@ -13,7 +13,7 @@ nav {
 }
 
 .user-info {
-  padding-right: 1rem;
+  padding-right: 0.5rem;
 }
 
 .left-side {
@@ -40,10 +40,15 @@ nav {
 }
 
 .right-side p {
-    margin: 0% 2%;
     color: white;
     transition: color 0.3s ease;
     cursor: pointer;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 .left-side p:hover,
@@ -66,12 +71,12 @@ nav {
 
 .logout-button {
   background: transparent;
-  border: 1px solid white;
   color: white;
-  padding: 0.2rem 0.4rem;
-  border-radius: 5px;
+  padding: 0.35rem 0.75rem;
   cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
+
 .logout-button:hover {
-  background-color: var(--purple-purple);
+  color: var(--strong-pink);
 }

@@ -32,6 +32,7 @@ export default function NavBar(){
                         <span className={styles["user-info"]}>
                             Welcome, {authContext?.userInfo.full_name}
                         </span>
+                        <span className={styles.divider} />
                         <button onClick={handleLogout} className={styles['logout-button']}>
                             Logout
                         </button>
