@@ -21,11 +21,11 @@ class Institution(models.Model):
 
 class BankAccount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bank_accounts")
-    institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, related_name="bank_accounts")
+    institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, null=True, related_name="bank_accounts")
 
     def __str__(self):
-        return self.institution.name
-    
+        return self.institution.name if self.institution else "Other"
+
     class Meta:
         verbose_name = "Bank Account"
         verbose_name_plural = "Bank Accounts"
