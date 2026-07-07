@@ -25,10 +25,10 @@ export default function Home() {
             </div>
             
             <div className="flex items-center justify-center">
-                <div className="w-[80%] h-[80%]">
+                <div className="w-[90%] h-[80%]">
                     <PiggyBox variant="primary">
                         <div className="w-[90%] h-full flex flex-col items-center justify-around py-4">
-                            <div className="w-full h-[25%] flex gap-4 mt-4">
+                            <div className="w-full h-[25%] flex gap-8 mt-4">
                                 <div className="w-1/2">
                                     <MoneyCard title="Total Expenses" number={1000.0}/>
                                 </div>
