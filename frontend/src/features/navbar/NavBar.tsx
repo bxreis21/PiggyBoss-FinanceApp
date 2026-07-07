@@ -22,9 +22,7 @@ export default function NavBar(){
                     <Link to="/finance" className={styles['nav-link']}>Finance</Link>
                 </div>
             ) : (
-                <div className={styles['left-side']}>
-                    <Link to="/">Piggy Boss</Link>
-                </div>
+                <div></div>
             )}
             
             
@@ -39,7 +37,7 @@ export default function NavBar(){
                         </button>
                     </>
                 ) : (
-                    <Link to="/account/login" className={styles['nav-link']}>Login</Link>
+                    <div></div>
                 )}
                 
             </div>

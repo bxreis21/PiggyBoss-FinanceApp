@@ -1,13 +1,13 @@
 .pink-button {
-  background: var(--piggy-pink);
+  background: var(--strong-pink);
   color: var(--font);
-  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.2;
   
   cursor: pointer;
   transition: background 0.3s ease;
-
-  width: auto;
-  height: auto;
 
   margin: 1rem;
   padding: 0.8rem;

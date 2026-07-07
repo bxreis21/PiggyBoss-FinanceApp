@@ -4,7 +4,7 @@ import { AuthProvider } from './providers/AuthProvider.jsx';
 
 import NavBar from '../features/navbar/NavBar.js'
 
-import Home from '../features/home/Home.js';
+import Home from '../features/home/pages/Home.js';
 import AccountRoutes from '../features/account/routes.js';
 import FinanceRoutes from '../features/finance/routes.js';
 import DashboardRoutes from '../features/dashboard/routes.js';
