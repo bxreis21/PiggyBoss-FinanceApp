@@ -21,6 +21,8 @@ class Institution(models.Model):
 class BankAccount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bank_accounts")
     institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, null=True, related_name="bank_accounts")
+    billing_day = models.PositiveIntegerField(default=1, help_text="Day of the month when the bill closes.")
+    due_day = models.PositiveIntegerField(default=10, help_text="Day of the month when the bill is due.")
 
     def __str__(self):
         return self.institution.name if self.institution else "Other"
