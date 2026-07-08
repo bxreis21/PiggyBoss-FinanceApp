@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 import secrets
+from datetime import timedelta
 
 load_dotenv()
 
@@ -165,3 +166,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'eduardohmg11@gmail.com'
 EMAIL_HOST_PASSWORD = 'zzdc owws efsq rxja'
 DEFAULT_FROM_EMAIL = 'PiggyBoss <eduardohmg11@gmail.com>'
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+}

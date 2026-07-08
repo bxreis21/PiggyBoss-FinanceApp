@@ -7,8 +7,8 @@ router.register(r'institution', InstitutionViewSet)
 router.register(r'bank_account', BankAccountViewSet)
 router.register(r'category', CategoryViewSet)
 router.register(r'third_party', ThirdPartyViewSet)
-router.register(r'transactions', TransactionsViewSet)
-router.register(r'creditcardbill', CreditCardBillViewSet)
+router.register(r'transaction', TransactionViewSet)
+router.register(r'credit_card_bill', CreditCardBillViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

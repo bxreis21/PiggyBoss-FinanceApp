@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import viewsets
 from .models import *
 from .serializers import *
@@ -25,7 +26,9 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Category.objects.filter(user=self.request.user)
+        return Category.objects.filter(
+            Q(user=self.request.user) | Q(user__isnull=True)
+        )
 
 class ThirdPartyViewSet(viewsets.ModelViewSet):
     queryset = ThirdParty.objects.all()
@@ -35,13 +38,13 @@ class ThirdPartyViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return ThirdParty.objects.filter(user=self.request.user)
 
-class TransactionsViewSet(viewsets.ModelViewSet):
-    queryset = Transactions.objects.all()
-    serializer_class = TransactionsSerializer
+class TransactionViewSet(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Transactions.objects.filter(user=self.request.user)
+        return Transaction.objects.filter(user=self.request.user)
 
 class CreditCardBillViewSet(viewsets.ModelViewSet):
     queryset = CreditCardBill.objects.all()

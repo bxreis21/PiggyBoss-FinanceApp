@@ -5,7 +5,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from datetime import date
 
 class Institution(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
     image = models.ImageField(upload_to='institution_images', null=True, blank=True)
     active = models.BooleanField(default=True)
@@ -32,7 +31,7 @@ class BankAccount(models.Model):
 
 
 class Category(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='category')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='category', null=True, blank=True)
     name = models.CharField(max_length=30, unique=True)
     color = ColorField(default='#FF0000')
     icon = models.ImageField(upload_to='category_images', null=True, blank=True)
@@ -61,7 +60,7 @@ class ThirdParty(models.Model):
     def __str__(self):
         return self.name
 
-class Transactions(models.Model):
+class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
     name = models.CharField(max_length=50)
     transactions_type = models.CharField(max_length=50, choices=[
@@ -77,6 +76,7 @@ class Transactions(models.Model):
         ('credit', 'Credit'),
         ])
     bank = models.ForeignKey(BankAccount, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
+    credit_card_bill = models.ForeignKey('CreditCardBill', on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     third_party = models.ForeignKey(ThirdParty, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

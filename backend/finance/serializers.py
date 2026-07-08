@@ -4,7 +4,7 @@ from .models import (
     BankAccount,
     Category,
     ThirdParty,
-    Transactions,
+    Transaction,
     CreditCardBill,
 )
 
@@ -60,9 +60,9 @@ class ThirdPartySerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class TransactionsSerializer(serializers.ModelSerializer):
+class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Transactions
+        model = Transaction
         fields = "__all__"
         read_only_fields = ['user']
 

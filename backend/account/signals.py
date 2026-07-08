@@ -11,7 +11,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         # Use get_or_create to avoid race conditions or duplicate attempts
         full_name = f"{instance.first_name} {instance.last_name}".strip()
         Profile.objects.get_or_create(user=instance, defaults={
-            'full_name': full_name or instance.username,
+            'full_name': full_name or instance.username
         })
 
 
