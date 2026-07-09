@@ -1,59 +1,52 @@
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  type ChartOptions,
-  type ChartData,
-} from 'chart.js';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { dark_theme, common_theme} from '../../shared/styles/theme.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const options: ChartOptions<'bar'> = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
-
-const chartData = {
-  labels: ['Jan','Feb','Mar','Apr','May','Jun', 'jul'],
-  datasets: [
-      {
-          label: 'Spending',
-          data: [400, 450, 500, 550, 600, 650, 600],
-          backgroundColor: 'rgba(236,72,153,0.9)',
-          borderRadius: 6,
-          barPercentage: 0.6,
-      }
-  ]
+interface SimpleData {
+  name: string;
+  values: number[];
+  labels?: string[];
 }
 
 type BarGraphProps = {
-  data?: ChartData<'bar'>;
+  data: SimpleData;
 };
 
-export default function BarGraph({ data = chartData }: BarGraphProps) {
+export default function BarGraph({ data }: BarGraphProps) {
+  const formattedData = data.values.map((value, index) => ({
+    name: data.labels?.[index] || `#${index + 1}`,
+    [data.name]: value,
+  }));
+
   return (
-    <div className='w-full h-full flex items-center justify-center'>
-      <div className='w-full h-full'>
-        <Bar data={data} options={options} />
-      </div>
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={formattedData}
+          margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+        >
+          <XAxis 
+            dataKey="name" 
+            axisLine={false} 
+            tickLine={false} 
+            tick={{ fill: '#9ca3af', fontSize: 12 }} 
+          />
+          <YAxis 
+            axisLine={false} 
+            tickLine={false} 
+            tick={{ fill: '#9ca3af', fontSize: 12 }}
+          />
+          <Tooltip 
+            cursor={{ fill: 'transparent' }} 
+            contentStyle={{ backgroundColor: dark_theme.strong_dark_tech, borderRadius: '8px', border: '1px solid #e5e7eb' }}
+          />
+          <Bar 
+            dataKey={data.name} 
+            fill={common_theme.strong_pink}
+            radius={[6, 6, 0, 0]} 
+            maxBarSize={40} 
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

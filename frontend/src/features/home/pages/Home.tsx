@@ -42,7 +42,11 @@ export default function Home() {
                                     <div className="w-full h-full p-4 flex flex-col">
                                         <h2 className="mb-4">Spending Overview</h2>
                                         <div className="w-full flex-1">
-                                            <BarGraph />
+                                            <BarGraph data={{ 
+                                                name: 'Expenses',
+                                                values: [400, 300, 200, 500, 350, 450, 550], 
+                                                labels: ['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul'] 
+                                            }}/>
                                         </div>
                                     </div>
                                 </PiggyBox>

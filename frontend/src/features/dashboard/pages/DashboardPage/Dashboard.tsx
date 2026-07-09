@@ -9,8 +9,8 @@ import MoneyCard from "../../components/MoneyCard/MoneyCard.js";
 // shared components
 import TitlePrice from "../../../../shared/components/TitlePrice.js";
 import TitleFraction from "../../../../shared/components/TitleFraction.js";
-import BarGraph from '../../components/BarGraph/BarGraph.js'
-import PizzaGraph from '../../components/PizzaGraph/PizzaGraph.js'
+import BarGraph from "../../../../shared/components/BarGraph.js";
+import PieGraph from "../../../../shared/components/PieGraph.js";
 
 export default function Dashboard() {
     return (
@@ -139,7 +139,7 @@ export default function Dashboard() {
                         body={
                             <div className="h-full w-full flex items-center justify-center">
                                 <div className="w-[80%] h-[80%]">
-                                    <PizzaGraph data={{ 
+                                    <PieGraph data={{ 
                                         name: 'Distribution', 
                                         values: [45, 25, 15, 10, 5], 
                                         labels: ['Rent','Food','Transport','Utilities','Other'] 
