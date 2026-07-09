@@ -37,7 +37,7 @@ export default function BarGraph({ data }: BarGraphProps) {
           />
           <Tooltip 
             cursor={{ fill: 'transparent' }} 
-            contentStyle={{ backgroundColor: dark_theme.strong_dark_tech, borderRadius: '8px', border: '1px solid #e5e7eb' }}
+            contentStyle={{ backgroundColor: dark_theme.dark_tech, borderRadius: '8px', border: '1px solid #e5e7eb' }}
           />
           <Bar 
             dataKey={data.name} 

@@ -119,7 +119,8 @@ export default function Dashboard() {
                                 <div className="w-[90%] h-[85%]">
                                     <BarGraph data={{ 
                                         name: 'Expenses',
-                                        values: [400, 300, 200, 500, 350], labels: ['Jan','Feb','Mar','Apr','May'] 
+                                        values: [400, 300, 200, 500, 350, 490, 300, 450, 550, 600, 700, 800], 
+                                        labels: ['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] 
                                     }}/>
                                 </div>
                             </div>

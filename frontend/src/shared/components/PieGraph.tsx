@@ -1,5 +1,5 @@
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { common_theme } from '../styles/theme.js';
+import { common_theme, dark_theme } from '../styles/theme.js';
 
 interface SimpleData {
   name: string
@@ -32,7 +32,7 @@ export default function PizzaGraph({ data, className }: Props) {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Tooltip 
-            contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}
+            contentStyle={{ backgroundColor: dark_theme.dark_tech, borderRadius: '8px', border: '1px solid #e5e7eb' }}
           />
           <Legend 
             verticalAlign="bottom" 
