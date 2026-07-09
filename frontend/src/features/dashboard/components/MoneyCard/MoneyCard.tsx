@@ -1,4 +1,4 @@
-import PiggyBox from "../../../../shared/components/PiggyBox/PiggyBox.js";
+import PiggyBox from "../../../../shared/components/PiggyBox.js";
 
 interface MoneyCardProps {
     title: string;

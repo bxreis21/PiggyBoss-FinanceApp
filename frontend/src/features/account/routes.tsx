@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Login from "./pages/LoginPage/Login.js";
-import Register from "./pages/RegisterPage/Register.js";
+import Login from "./pages/Login/Login.js";
+import Register from "./pages/Register/Register.js";
 
 export default function AccountRoutes() {
     return (

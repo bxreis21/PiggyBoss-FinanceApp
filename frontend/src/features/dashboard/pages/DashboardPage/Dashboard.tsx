@@ -3,12 +3,12 @@ import HeaderLayout from "../../layouts/Header.js";
 import ListLayout from "../../layouts/List.js";
 
 // Components
-import PiggyBox from "../../../../shared/components/PiggyBox/PiggyBox.js";
+import PiggyBox from "../../../../shared/components/PiggyBox.js";
 import MoneyCard from "../../components/MoneyCard/MoneyCard.js";
 
 // shared components
-import TitlePrice from "../../../../shared/components/TitlePrice/TitlePrice.js";
-import TitleFraction from "../../../../shared/components/TitleFraction/TitleFraction.js";
+import TitlePrice from "../../../../shared/components/TitlePrice.js";
+import TitleFraction from "../../../../shared/components/TitleFraction.js";
 import BarGraph from '../../components/BarGraph/BarGraph.js'
 import PizzaGraph from '../../components/PizzaGraph/PizzaGraph.js'
 

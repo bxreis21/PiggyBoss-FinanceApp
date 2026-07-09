@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-import API from "../../shared/services/api.js";
+import API from "../../shared/service/api.js";
 import type { JSX } from "@emotion/react/jsx-runtime";
 import type { UserInfo, LoginCredentials, AuthContextType } from "./providers.types.js";
 

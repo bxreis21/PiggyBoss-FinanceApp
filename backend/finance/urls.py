@@ -4,11 +4,11 @@ from .views import *
 
 router = DefaultRouter()
 router.register(r'institution', InstitutionViewSet)
-router.register(r'bank_account', BankAccountViewSet)
+router.register(r'bank-account', BankAccountViewSet)
 router.register(r'category', CategoryViewSet)
-router.register(r'third_party', ThirdPartyViewSet)
+router.register(r'third-party', ThirdPartyViewSet)
 router.register(r'transaction', TransactionViewSet)
-router.register(r'credit_card_bill', CreditCardBillViewSet)
+router.register(r'credit-card-bill', CreditCardBillViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,5 +1,5 @@
-import PiggyBox from "../../../shared/components/PiggyBox/PiggyBox.js"
-import PinkButton from "../../../shared/components/PinkButton/PinkButton.js"
+import { Link } from "react-router-dom"
+import PiggyBox from "../../../shared/components/PiggyBox.js"
 import MoneyCard from "../../dashboard/components/MoneyCard/MoneyCard.js"
 import BarGraph from "../../../shared/components/BarGraph.js"
 
@@ -17,11 +17,11 @@ export default function Home() {
                     Track your expenses, analyze speending patterns, and manage your cards with Piggy Boss.
                 </h3>
                 
-                <a href="/account/login" className="mt-8 inline-flex items-center text-xl 
+                <Link to="/account/login" className="mt-8 inline-flex items-center text-xl 
                 font-bold gap-2 transition-colors duration-200 hover:text-[var(--strong-pink)]">
                     <span>Get Started</span>
                     <span aria-hidden="true"> →</span>
-                </a>
+                </Link>
             </div>
             
             <div className="flex items-center justify-center">

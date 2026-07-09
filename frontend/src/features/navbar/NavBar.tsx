@@ -2,7 +2,7 @@ import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useAuth } from "../../app/providers/AuthProvider.js";
-import Image from "../../shared/components/Image/Image.js";
+import Image from "../../shared/components/Image.js";
 
 export default function NavBar(){
     const authContext = useAuth();

@@ -8,11 +8,11 @@ import { registerUser } from "../../service.js";
 import Centralize from "../../layouts/Centralize.js";
 import FormContainer from "../../layouts/FormContainer.js";
 
-import Image from "../../../../shared/components/Image/Image.js";
-import FormField from "../../../../shared/components/FormField/FormField.jsx";
-import PinkButton from "../../../../shared/components/PinkButton/PinkButton.js";
-import PiggyBox from "../../../../shared/components/PiggyBox/PiggyBox.js";
-import Message from "../../../../shared/components/Message/Message.js"; 
+import Image from "../../../../shared/components/Image.js";
+import FormField from "../../../../shared/components/FormField.jsx";
+import PinkButton from "../../../../shared/components/PinkButton.js";
+import PiggyBox from "../../../../shared/components/PiggyBox.js";
+import Message from "../../../../shared/components/Message.js"; 
 import type { RegisterForm, RegisterFormFields } from "../../types.js";
 
 export default function Register() {
