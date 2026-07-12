@@ -21,7 +21,6 @@ class InstitutionSerializer(serializers.ModelSerializer):
 
 
 class BankAccountSerializer(serializers.ModelSerializer):
-    institution = InstitutionSerializer(read_only=True)
 
     class Meta:
         model = BankAccount
@@ -74,9 +73,6 @@ class CreditCardBillSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
-    bank = BankAccountSerializer(read_only=True)
-    category = CategorySerializer(read_only=True)
-    credit_card_bill = CreditCardBillSerializer(read_only=True)
 
     class Meta:
         model = Transaction
