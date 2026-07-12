@@ -10,6 +10,8 @@ from .models import (
 from .enums import PaymentMethod, TransactionType
 from .services import get_or_create_credit_invoice
 
+from datetime import date
+
 
 class InstitutionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,11 +21,12 @@ class InstitutionSerializer(serializers.ModelSerializer):
 
 
 class BankAccountSerializer(serializers.ModelSerializer):
+    institution = InstitutionSerializer(read_only=True)
+
     class Meta:
         model = BankAccount
         fields = "__all__"
         read_only_fields = ['user']
-        depth = 1
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
@@ -59,7 +62,22 @@ class ThirdPartySerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+class CreditCardBillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreditCardBill
+        fields = "__all__"
+        read_only_fields = ['user']
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
+
+
 class TransactionSerializer(serializers.ModelSerializer):
+    bank = BankAccountSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
+    credit_card_bill = CreditCardBillSerializer(read_only=True)
+
     class Meta:
         model = Transaction
         fields = "__all__"
@@ -79,30 +97,37 @@ class TransactionSerializer(serializers.ModelSerializer):
         }
     )
 
+    @staticmethod
+    def redirect_credit_transaction(user, validated_data):
+        bank = validated_data['bank']
+        transaction_date = validated_data.get("date", date.today())
+
+        bill = get_or_create_credit_invoice(
+            user=user,
+            bank=bank,
+            transaction_date=transaction_date
+        )
+        validated_data['credit_card_bill'] = bill
+    
     def create(self, validated_data):
         user = self.context['request'].user
         validated_data['user'] = user
 
         if validated_data.get('payment_method') == PaymentMethod.CREDIT:
-            bank = validated_data['bank_account']
-            transaction_date = validated_data['date']
-
-            bill = get_or_create_credit_invoice(
+            TransactionSerializer.redirect_credit_transaction(
                 user=user,
-                bank=bank,
-                transaction_date=transaction_date
+                validated_data=validated_data
             )
-            validated_data['credit_card_bill'] = bill
 
         return super().create(validated_data)
 
+    def update(self, instance, validated_data):
+        user = self.context['request'].user
 
-class CreditCardBillSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CreditCardBill
-        fields = "__all__"
-        read_only_fields = ['user']
+        if validated_data.get('payment_method') == PaymentMethod.CREDIT:
+            TransactionSerializer.redirect_credit_transaction(
+                user=user,
+                validated_data=validated_data
+            )
 
-    def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
-        return super().create(validated_data)
+        return super().update(instance, validated_data)

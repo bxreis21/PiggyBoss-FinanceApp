@@ -25,8 +25,8 @@ class BankAccountAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'user', 'balance_type', 'color')
-    list_filter = ('balance_type',)
+    list_display = ('id', 'name', 'user', 'transaction_type', 'color')
+    list_filter = ('transaction_type',)
     search_fields = ('name', 'user__username')
 
 
@@ -45,6 +45,6 @@ class TransactionAdmin(admin.ModelAdmin):
 
 @admin.register(CreditCardBill)
 class CreditCardBillAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'bank', 'start_date', 'maturity_date', 'status')
-    list_filter = ('status', 'start_date', 'maturity_date')
+    list_display = ('id', 'user', 'bank', 'start_date', 'billing_date', 'status')
+    list_filter = ('status', 'start_date', 'billing_date')
     search_fields = ('user__username', 'bank__institution__name')

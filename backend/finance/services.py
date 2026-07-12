@@ -2,7 +2,7 @@ import calendar
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import User
-from .models import Bank, CreditCardBill
+from .models import BankAccount, CreditCardBill
 
 def get_safe_date(year: int, month: int, target_day: int) -> date:
     """
@@ -12,15 +12,14 @@ def get_safe_date(year: int, month: int, target_day: int) -> date:
     return date(year, month, min(target_day, max_days))
 
 
-def get_or_create_credit_invoice(user: User, bank: Bank, transaction_date: date) -> CreditCardBill:
+def get_or_create_credit_invoice(user: User, bank: BankAccount, transaction_date: date) -> CreditCardBill:
     """
     Find out the correct credit invoice for a given transaction date.
     """
     current_reference = transaction_date.replace(day=1)
     before = current_reference - relativedelta(months=1)
-    closing_day = bank.billing_date.day 
+    closing_day = bank.billing_day
 
-    # Build cycle dates handles short months automatically
     current_bill_date = get_safe_date(current_reference.year, current_reference.month, closing_day)
     current_start_date = get_safe_date(before.year, before.month, closing_day)
 

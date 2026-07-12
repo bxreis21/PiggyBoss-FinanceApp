@@ -117,4 +117,4 @@ class CreditCardBill(models.Model):
         unique_together = ('user', 'bank', 'reference_date')
 
     def __str__(self):
-        return f"{dateformat(self.reference_date, "M")}/{self.reference_date.year}"
+        return f"{dateformat(self.reference_date)}/{self.reference_date.year}"
