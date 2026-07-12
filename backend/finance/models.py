@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.formats import dateformat
 from colorfield.fields import ColorField
-from phonenumber_field.modelfields import PhoneNumberField
 from datetime import date
+from .enums import PaymentMethod, TransactionType, BillStatus
+
 
 class Institution(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -22,7 +24,6 @@ class BankAccount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bank_accounts")
     institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, null=True, related_name="bank_accounts")
     billing_day = models.PositiveIntegerField(default=1, help_text="Day of the month when the bill closes.")
-    due_day = models.PositiveIntegerField(default=10, help_text="Day of the month when the bill is due.")
 
     def __str__(self):
         return self.institution.name if self.institution else "Other"
@@ -31,20 +32,24 @@ class BankAccount(models.Model):
         verbose_name = "Bank Account"
         verbose_name_plural = "Bank Accounts"
 
+        unique_together = ('user', 'institution')
 
 class Category(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='category', null=True, blank=True)
     name = models.CharField(max_length=30, unique=True)
     color = ColorField(default='#FF0000')
     icon = models.ImageField(upload_to='category_images', null=True, blank=True)
-    balance_type = models.CharField(max_length=20, choices=[
-        ('expenses', 'Expenses'), 
-        ('income', 'Income')
-        ])
+    transaction_type = models.CharField(
+        max_length=20, 
+        choices=TransactionType.choices,
+        default=TransactionType.OUTFLOW
+    )
     
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+
+        unique_together = ('user', 'name')
 
     def __str__(self):
         return self.name
@@ -65,19 +70,20 @@ class ThirdParty(models.Model):
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
     name = models.CharField(max_length=50)
-    transactions_type = models.CharField(max_length=50, choices=[
-        ('income', 'Income'),
-        ('expense', 'Expense'),
-        ],
-        default='expense')
+    transactions_type = models.CharField(
+        max_length=50,
+        choices=TransactionType.choices,
+        default=TransactionType.OUTFLOW
+    )
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     date = models.DateField(default=date.today)
-    payment_method = models.CharField(max_length=50, choices=[
-        ('debit', 'Debit'),
-        ('credit', 'Credit'),
-        ])
-    bank = models.ForeignKey(BankAccount, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
+    payment_method = models.CharField(
+        max_length=20,
+        choices=PaymentMethod.choices,
+        default=PaymentMethod.DEBIT
+    )
+    bank = models.ForeignKey(BankAccount, on_delete=models.CASCADE, related_name='transactions')
     credit_card_bill = models.ForeignKey('CreditCardBill', on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     third_party = models.ForeignKey(ThirdParty, on_delete=models.SET_NULL, null=True, blank=True, related_name='transactions')
     description = models.TextField(null=True, blank=True)
@@ -95,19 +101,20 @@ class Transaction(models.Model):
 class CreditCardBill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bills')
     bank = models.ForeignKey(BankAccount, on_delete=models.CASCADE, related_name='bills')
+    reference_date = models.DateField()
     start_date = models.DateField()
-    maturity_date = models.DateField()
+    billing_date = models.DateField()
+
     status = models.CharField(max_length=20, 
-        choices=[
-        ('paid', 'Paid'),
-        ('unpaid', 'Unpaid'),
-        ],
-        default='unpaid'
+        choices=BillStatus.choices,
+        default=BillStatus.UNPAID
     )
 
     class Meta:
         verbose_name = "Credit Card Bill"
         verbose_name_plural = "Credit Card Bills"
 
+        unique_together = ('user', 'bank', 'reference_date')
+
     def __str__(self):
-        return self.start_date
+        return f"{dateformat(self.reference_date, "M")}/{self.reference_date.year}"

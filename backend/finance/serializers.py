@@ -7,6 +7,8 @@ from .models import (
     Transaction,
     CreditCardBill,
 )
+from .enums import PaymentMethod, TransactionType
+from .services import get_or_create_credit_invoice
 
 
 class InstitutionSerializer(serializers.ModelSerializer):
@@ -34,13 +36,10 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ['user']
 
-    balance_type = serializers.ChoiceField(
-        choices=[
-            ('expenses', 'Expenses'),
-            ('income', 'Income'),
-        ],
+    transaction_type = serializers.ChoiceField(
+        choices=TransactionType.choices,
         error_messages={
-            'invalid_input': 'invalid balance_type'
+            'invalid_input': f'Invalid transaction type. Must be one of: {TransactionType.choices}'
         }
     )
 
@@ -64,30 +63,37 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = "__all__"
-        read_only_fields = ['user']
+        read_only_fields = ['user', 'credit_card_bill']
 
     transactions_type = serializers.ChoiceField(
-        choices=[
-            ('income', 'Income'),
-            ('expense', 'Expense'),
-        ],
+        choices=TransactionType.choices,
         error_messages={
-            'invalid_input': 'Transaction type input must be income or expense'
+            'invalid_input': f'Invalid transaction type. Must be one of: {TransactionType.choices}'
         }
     )
 
     payment_method = serializers.ChoiceField(
-        choices=[
-            ('debit', 'Debit'),
-            ('credit', 'Credit'),
-        ],
+        choices=PaymentMethod.choices,
         error_messages={
-            'invalid_choice': 'The payment_method must be one of the following: Debit or Credit'
+            'invalid_choice': f'Invalid payment method. Must be one of: {PaymentMethod.choices}'
         }
     )
 
     def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
+        user = self.context['request'].user
+        validated_data['user'] = user
+
+        if validated_data.get('payment_method') == PaymentMethod.CREDIT:
+            bank = validated_data['bank_account']
+            transaction_date = validated_data['date']
+
+            bill = get_or_create_credit_invoice(
+                user=user,
+                bank=bank,
+                transaction_date=transaction_date
+            )
+            validated_data['credit_card_bill'] = bill
+
         return super().create(validated_data)
 
 
