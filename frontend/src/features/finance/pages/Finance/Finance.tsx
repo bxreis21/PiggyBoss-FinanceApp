@@ -6,37 +6,11 @@ import BankCard from '../../components/BankCard/BankCard.js'
 import PiggyBox from '../../../../shared/components/PiggyBox.js'
 import PiggyTable from '../../components/PiggyTable/PiggyTable.js'
 
-import type { TransactionSchema } from '../../schemas.js'
+import type { TransactionSchema, BankAccountSchema } from '../../schemas.js'
+import { fetchFinanceData } from '../../utils.js'
 
-import FinanceService from '../../../../shared/service/finance.js'
 
-export default function Finance() {
-    const [transactions, setTransactions] = useState<Array<TransactionSchema>>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        const loadTransactions = async () => {
-            setLoading(true);
-
-            try {
-                const response = await new FinanceService('transaction').get();
-
-                if (response.status === 200) {
-                    setTransactions(response.data);
-                }
-                else {
-                    setError('Failed to load transactions.');
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadTransactions();
-    }, []);
-
-    const transactionHeader = [
+const transactionHeader = [
         { name: 'Date', length: '3' },
         { name: 'Transaction', length: '5' },
         { name: 'Category', length: '5' },
@@ -44,6 +18,32 @@ export default function Finance() {
         { name: 'Third-party', length: '3' },
         { name: 'Value', length: '4' }
     ]
+
+
+export default function Finance() {
+    const [banks, setBanks] = useState<Array<BankAccountSchema>>([]);
+    const [transactions, setTransactions] = useState<Array<TransactionSchema>>([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        async function initializePage() {
+            setLoading(true)
+            setError("")
+
+            try {
+                await Promise.all([
+                    fetchFinanceData('bank-account', setBanks, setError, 'Failed to load banks.'),
+                    fetchFinanceData('transaction', setTransactions, setError, 'Failed to load transactions.')
+                ]);
+            } catch (err) {
+                setError('An unexpected error occurred.')
+            } finally {
+                setLoading(false)
+            }
+        }
+        initializePage();
+    }, [])
     
     if (loading) {
         return (
