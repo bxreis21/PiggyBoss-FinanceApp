@@ -10,15 +10,22 @@ class InstitutionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return self.queryset
+        return Institution.objects.filter(
+            Q(user=self.request.user) | Q(user__isnull=True)
+        )
     
 class BankAccountViewSet(viewsets.ModelViewSet):
     queryset = BankAccount.objects.all()
-    serializer_class = BankAccountSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return BankAccount.objects.filter(user=self.request.user)
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return BankAccountReadSerializer
+
+        return BankAccountWriteSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()

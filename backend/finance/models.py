@@ -7,6 +7,9 @@ from .enums import PaymentMethod, TransactionType, BillStatus
 
 
 class Institution(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.DO_NOTHING, related_name="institutions", null=True, blank=True
+    )
     name = models.CharField(max_length=50, unique=True)
     image = models.ImageField(upload_to='institution_images', null=True, blank=True)
     active = models.BooleanField(default=True)
@@ -20,22 +23,38 @@ class Institution(models.Model):
         verbose_name = "Institution"
         verbose_name_plural = "Institutions"
 
-class BankAccount(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bank_accounts")
-    institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, null=True, related_name="bank_accounts")
-    billing_day = models.PositiveIntegerField(default=1, help_text="Day of the month when the bill closes.")
+    @staticmethod
+    def get_default_institution():
+        institution, _ = Institution.objects.get_or_create(
+            name="No bank",
+            defaults={'active': True}
+        )
+        return institution
 
-    def __str__(self):
-        return self.institution.name if self.institution else "Other"
+class BankAccount(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="bank_accounts"
+    )
+    institution = models.ForeignKey(
+        Institution,
+        default=Institution.get_default_institution,
+        on_delete=models.SET_DEFAULT,
+        related_name="bank_accounts"
+    )
+    billing_day = models.PositiveIntegerField(
+        default=1, help_text="Day of the month when the bill closes."
+    )
 
     class Meta:
         verbose_name = "Bank Account"
         verbose_name_plural = "Bank Accounts"
-
         unique_together = ('user', 'institution')
 
+
 class Category(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='category', null=True, blank=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='category', null=True, blank=True
+    )
     name = models.CharField(max_length=30, unique=True)
     color = ColorField(default='#FF0000')
     icon = models.ImageField(upload_to='category_images', null=True, blank=True)
@@ -66,6 +85,7 @@ class ThirdParty(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')

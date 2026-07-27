@@ -19,18 +19,27 @@ class InstitutionSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ['created_at', 'updated_at']
 
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
-class BankAccountSerializer(serializers.ModelSerializer):
-
+class BankAccountWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = BankAccount
-        fields = "__all__"
+        fields = '__all__'
         read_only_fields = ['user']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
+class BankAccountReadSerializer(serializers.ModelSerializer):
+    institution = InstitutionSerializer(read_only=True)
+
+    class Meta:
+        model = BankAccount
+        fields = '__all__'
+        read_only_fields = ['user']
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -93,8 +102,12 @@ class TransactionSerializer(serializers.ModelSerializer):
         }
     )
 
-    @staticmethod
-    def redirect_credit_transaction(user, validated_data):
+    def have_bank_account(self, validated_data):
+        if BankAccount.objects.filter(id=validated_data['bank'].id).exists():
+            return True
+        return False
+
+    def redirect_credit_transaction(self, user, validated_data):
         bank = validated_data['bank']
         transaction_date = validated_data.get("date", date.today())
 
@@ -110,10 +123,13 @@ class TransactionSerializer(serializers.ModelSerializer):
         validated_data['user'] = user
 
         if validated_data.get('payment_method') == PaymentMethod.CREDIT:
-            TransactionSerializer.redirect_credit_transaction(
+            self.redirect_credit_transaction(
                 user=user,
                 validated_data=validated_data
             )
+
+        if not self.have_bank_account(validated_data):
+            raise serializers.ValidationError("This user dont have account in this bank.")
 
         return super().create(validated_data)
 

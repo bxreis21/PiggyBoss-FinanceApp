@@ -1,14 +1,14 @@
 export interface InstitutionSchema {
-  id?: number;
+  id: number;
   name: string;
   image?: string | null;
   active?: boolean;
-  created_at?: string;
-  updated_at?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CategorySchema {
-  id?: number;
+  id: number;
   user?: number | null;
   name: string;
   color?: string;
@@ -17,10 +17,10 @@ export interface CategorySchema {
 }
 
 export interface BankAccountSchema {
-  id?: number;
-  user?: number | null;
-  institution?: number | null;
-  billing_day?: number;
+  id: number;
+  user: number;
+  institution: InstitutionSchema;
+  billing_day: number;
   due_day?: number;
 }
 

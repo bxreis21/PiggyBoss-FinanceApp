@@ -15,4 +15,17 @@ async function fetchFinanceData<T>(
     }
 }
 
-export {fetchFinanceData}
+async function postFinanceData<T>(
+    endpoint: string,
+    data: T,
+    setError: (error: string) => void,
+    errorMessage: string
+) {
+    const response = await new FinanceService(endpoint).post(data)
+
+    if (response.status !== 201) {
+        setError(errorMessage)
+    }
+}
+
+export {fetchFinanceData, postFinanceData}

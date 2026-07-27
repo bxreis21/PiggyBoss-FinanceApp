@@ -1,17 +1,17 @@
-import styles from './PiggyTable.module.css'
+import styles from './TransactionTable.module.css'
 import type { TransactionSchema } from '../../schemas.js'
 
-interface PiggyColumn {
+interface Column {
     name: string
     length: string
 }
 
-interface PiggyTableProps {
-    header: Array<PiggyColumn>
+interface TransactionTableProps {
+    header: Array<Column>
     content: Array<TransactionSchema>
 }
 
-export default function PiggyTable({ header, content }: PiggyTableProps) {
+export default function TransactionTable({ header, content }: TransactionTableProps) {
     const renderRow = (transaction: TransactionSchema) => [
         transaction.date ?? '-',
         transaction.name,
